@@ -77,3 +77,39 @@ func (serv *ServicoPedido) CriarPedido(cliente string, itens []ItemPedido) (*Ped
 
 	return &pedido, nil
 }
+
+func (sev *ServicoPedido) CancelarPedido(pedidoID string) (*Pedido, error) {
+	pedido, err := sev.repoPedido.BuscarPorID(pedidoID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = pedido.Cancelar()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, item := range pedido.Itens {
+		produto, err := sev.repoProduto.BuscarPorID(item.ProdutoId)
+		if err != nil {
+			return nil, err
+		}
+
+		produto.DevolverEstoque(item.Quantidade)
+	}
+	return pedido, nil
+}
+
+func (sev *ServicoPedido) PagarPedido(pedidoID string) (*Pedido, error) {
+	pedido, err := sev.repoPedido.BuscarPorID(pedidoID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = pedido.Pagar()
+	if err != nil {
+		return nil, err
+	}
+
+	return pedido, nil
+}
