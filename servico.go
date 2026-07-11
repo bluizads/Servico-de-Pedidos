@@ -113,3 +113,16 @@ func (sev *ServicoPedido) PagarPedido(pedidoID string) (*Pedido, error) {
 
 	return pedido, nil
 }
+
+func (sev *ServicoPedido) BuscarPedido(pedidoID string) (*Pedido, error) {
+	pedido, err := sev.repoPedido.BuscarPorID(pedidoID)
+	if err != nil {
+		return nil, err
+	}
+	return pedido, err
+}
+
+func (sev *ServicoPedido) ListarPedidos() []Pedido {
+	lista := sev.repoPedido.Listar()
+	return lista
+}
