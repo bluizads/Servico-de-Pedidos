@@ -26,6 +26,18 @@ func (repo *RepositorioProdutoMemoria) BuscarPorId(id string) (*Produto, error) 
 	return produto, nil
 }
 
+func (repo *RepositorioProdutoMemoria) Salvar(produto Produto) {
+	repo.produtos[produto.Id] = &produto
+}
+
+func (repo *RepositorioProdutoMemoria) Listar() []Produto {
+	lista := make([]Produto, 0, len(repo.produtos))
+	for _, produto := range repo.produtos {
+		lista = append(lista, *produto)
+	}
+	return lista
+}
+
 // para pedidos
 type RepositorioPedido interface {
 	Salvar(pedido Pedido)
