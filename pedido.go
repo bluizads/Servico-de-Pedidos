@@ -37,3 +37,11 @@ func (compra *Pedido) Pagar() error {
 	compra.Status = StatusPago
 	return nil
 }
+
+func (compra *Pedido) Cancelar() error {
+	if compra.Status != StatusPendente {
+		return ErrMudancasStatusInvalida
+	}
+	compra.Status = StatusCancelado
+	return nil
+}

@@ -21,6 +21,7 @@ func main() {
 		fmt.Println("Erro:", err)
 		return
 	}
-	fmt.Println("pedido criado:", pedido.ID, "total:", pedido.CalcularTotal())
+	fmt.Println("\n>> Pedido criado:", pedido.ID, "total: R$ ", pedido.CalcularTotal())
+	fmt.Println("estoque do notebook agora:", repoProduto.produtos["P001"].Estoque)
 
 }
