@@ -4,7 +4,7 @@ import "errors"
 
 var (
 	ErrProdutoNaoEncontrado   = errors.New("Produto nao encontrado")
-	ErrPedidoNaoEcncontrado   = errors.New("pedido nao encontrado")
+	ErrPedidoNaoEncontrado    = errors.New("pedido nao encontrado")
 	ErrQuantidadeInvalida     = errors.New("Quantidade invalida")
 	ErrEstoqueInsuficiente    = errors.New("estoque insuficiente")
 	ErrClienteInvalido        = errors.New("cliente inválido")

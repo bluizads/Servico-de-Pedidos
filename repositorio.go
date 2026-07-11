@@ -3,7 +3,7 @@ package main
 // pra ser um repositorio tem q ter
 type RepositorioProduto interface {
 	Salvar(produto Produto)
-	BuscarPorId(id string) (*Produto, error)
+	BuscarPorID(ID string) (*Produto, error)
 	Listar() []Produto
 }
 
@@ -18,8 +18,8 @@ func NovoRepositorioProdutoMemoria() *RepositorioProdutoMemoria {
 	}
 }
 
-func (repo *RepositorioProdutoMemoria) BuscarPorId(id string) (*Produto, error) {
-	produto, ok := repo.produtos[id]
+func (repo *RepositorioProdutoMemoria) BuscarPorID(ID string) (*Produto, error) {
+	produto, ok := repo.produtos[ID]
 	if !ok {
 		return nil, ErrProdutoNaoEncontrado
 	}
@@ -27,7 +27,7 @@ func (repo *RepositorioProdutoMemoria) BuscarPorId(id string) (*Produto, error) 
 }
 
 func (repo *RepositorioProdutoMemoria) Salvar(produto Produto) {
-	repo.produtos[produto.Id] = &produto
+	repo.produtos[produto.ID] = &produto
 }
 
 func (repo *RepositorioProdutoMemoria) Listar() []Produto {
@@ -41,7 +41,7 @@ func (repo *RepositorioProdutoMemoria) Listar() []Produto {
 // para pedidos
 type RepositorioPedido interface {
 	Salvar(pedido Pedido)
-	BuscarPorId(id string) (*Pedido, error)
+	BuscarPorID(ID string) (*Pedido, error)
 	Listar() []Pedido
 }
 
@@ -56,10 +56,10 @@ func NovoRepositorioPedidoMemoria() *RepositorioPedidoMemoria {
 	}
 }
 
-func (repo *RepositorioPedidoMemoria) BuscarPorId(id string) (*Pedido, error) {
-	pedido, ok := repo.pedidos[id]
+func (repo *RepositorioPedidoMemoria) BuscarPorID(ID string) (*Pedido, error) {
+	pedido, ok := repo.pedidos[ID]
 	if !ok {
-		return nil, ErrPedidoNaoEcncontrado
+		return nil, ErrPedidoNaoEncontrado
 	}
 	return pedido, nil
 }

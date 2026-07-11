@@ -1,7 +1,7 @@
 package main
 
 type Produto struct {
-	Id      string
+	ID      string
 	Nome    string
 	Preco   float64
 	Estoque int
@@ -15,6 +15,6 @@ func (item *Produto) ReduzirEstoque(quantidade int) error {
 	return nil
 }
 
-func (item *Produto) AdicionaProduto(quantidade int) {
+func (item *Produto) DevolverEstoque(quantidade int) {
 	item.Estoque = item.Estoque + quantidade
 }
